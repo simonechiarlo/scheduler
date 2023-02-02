@@ -3,16 +3,37 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import Scheduler from './components/Scheduler'
 import { PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, CELL_ACCENT_COLOR, CELL_PRIMARY_COLOR, CELL_SECONDATY_COLOR } from './Settings'
+import { Subject, Teacher } from './Interfaces'
+
+type HourData = {
+  day      : number
+  fromHour : number
+  toHour   : number
+  teachers : Teacher[]
+  subject  : Subject
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const data = new Array<HourData>()
+  data.push(
+    {
+      day: 1,
+      fromHour: 0,
+      toHour: 1,
+      teachers: [],
+      subject: {
+        Name : "Ginnastica"
+      }
+    }
+  )
 
   return (
     <Scheduler 
       height={"100%"}
       width={"100%"}
-      data={[]}
-      hourTabWidth={'10%'}    
+      data={data}
+      hourTabWidth={'15%'}    
       dayTabHeight={'10%'}
       accent_color={ACCENT_COLOR}
       primary_color={PRIMARY_COLOR}

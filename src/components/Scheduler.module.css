@@ -1,41 +1,131 @@
+:root{
+    --hour-display-font-size : 1.2em
+}
+
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    [ OUTER CONTAINER SECTION ]
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .schedulerWrap{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+    display        : flex;
+    flex-direction : column;
 }
 .topWrap, .bottomWrap{
-    display: flex;
-    flex-direction: row;
+    display        : flex;
+    flex-direction : row;
 }
-.bottomWrap{ height: 100% }
+.bottomWrap{ 
+    height : 100% 
+}
+
+
+
+/*  ~~~~~~~~~~~~~~~~~~~~~
+
+    [ LEFT HOUR DISPLAY ]
+
+    ~~~~~~~~~~~~~~~~~~~~~ */
+
 .hourDisplayContainer{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: end;
+    height          : 100%;
+    font-size       : var(--hour-display-font-size);
+    display         : flex;
+    flex-direction  : column;
+    justify-content : space-between;
+    text-align      : end;
 }
+.hourDisplay{
+    display        : flex;
+    height         : 100%;
+    width          : 100%;
+    flex-direction : row-reverse;
+    align-items    : flex-end;
+}
+.hourLabel{
+    width     : fit-content;
+    height    : fit-content;
+}
+
+
+
+/*  ~~~~~~~~~~~~~~~~~~~~
+
+    [ HOUR INDENTATION ]
+
+    ~~~~~~~~~~~~~~~~~~~~ */
+
+.hourSingal{
+
+}
+
+
+
+/*  ~~~~~~~~~~~~~~~~~~~~
+
+    [ TOP WEEK DISPLAY ]
+
+    ~~~~~~~~~~~~~~~~~~~~*/
+
 .schedulerDayContainer{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+    display        : flex;
+    flex-direction : row;
+    width          : 100%;
 }
 .schedulerDayContainer > div {
-    width: 20%;
+    width : 20%;
 }
 .schedulerDay{
-    display: center;
+    display : center;
 }
 .schedulerDay > div {
-    display: grid;
-    place-content: center;
+    display       : grid;
+    place-content : center;
 }
 .schedulerDay > div > span {
-    display: block;
-    text-align: center;
-    width: 50px;
-    line-height: 50px;
-    aspect-ratio: 1 / 1;
-    border-radius: 100vw;
+    display       : block;
+    text-align    : center;
+    width         : 50px;
+    line-height   : 50px;
+    aspect-ratio  : 1 / 1;
+    border-radius : 100vw;
+}
+
+
+
+/*  ~~~~~~~~~~~~~~~~~~~~~~~
+
+    [ SCHEDULE HOURS GRID ]
+
+    ~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.HourGridContainer{
+    display : grid;
+}
+.HourGridCell{
+}
+.HourGridCellDataWrap{
+    height        : 100%;
+}
+.HourGridCellData{
+    display       : grid;
+    place-content : center;
+    height        : 100%;
+}
+
+
+
+/*  ~~~~~~~~~~~~~~~~~~~~
+
+    [ CELL DATA POP-UP ]
+
+    ~~~~~~~~~~~~~~~~~~~~ */
+
+.popUpWrapper{
+    position    : absolute;
+    background-color: white;
+    box-shadow  : 0px 17px 25px 4px rgba(0,0,0,0.2);
+    transform   : translate(0, -20%);
+    place-items : center;
 }
