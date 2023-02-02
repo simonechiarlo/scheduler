@@ -2,10 +2,19 @@
 .schedulerWrap{
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 .topWrap, .bottomWrap{
     display: flex;
     flex-direction: row;
+}
+.bottomWrap{ height: 100% }
+.hourDisplayContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: end;
 }
 .schedulerDayContainer{
     display: flex;
@@ -14,9 +23,6 @@
 }
 .schedulerDayContainer > div {
     width: 20%;
-}
-.empty{
-    
 }
 .schedulerDay{
     display: center;
@@ -28,10 +34,8 @@
 .schedulerDay > div > span {
     display: block;
     text-align: center;
-    vertical-align: middle;
     width: 50px;
     line-height: 50px;
     aspect-ratio: 1 / 1;
     border-radius: 100vw;
-    background-color: red;
 }

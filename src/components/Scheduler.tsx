@@ -70,7 +70,7 @@ const extractMaybeProp : ( prop : undefined | number | string ) => string = prop
             ? prop
             : `${prop}${FALLBACK_UNIT_TYPE}`
 
-const DayView = ({ currentWeek, height, width } : { currentWeek : Date, height : string, width : string } ) => {
+const DayView = ({ currentWeek, height, width, accent_color, accent_text_color } : { currentWeek : Date, height : string, width : string, accent_color : string, accent_text_color : string  } ) => {
     let temp_data = new Date(currentWeek)
     temp_data.setDate(temp_data.getDate() + 1)
     const getDataAndIncrement = () => {
@@ -82,31 +82,33 @@ const DayView = ({ currentWeek, height, width } : { currentWeek : Date, height :
     <div className={Style.schedulerDayContainer} style={{width}}>
         <div className={Style.schedulerDay}>
             <div>
-                <span>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
+                <span style={{backgroundColor:accent_color, color: accent_text_color}}>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
             </div>
-            <p>Lunedì</p>
+            <div>
+                <p>Lunedì</p>
+            </div>
         </div>
         <div className={Style.schedulerDay}>
             <div>
-                <span>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
+                <span style={{backgroundColor:accent_color, color: accent_text_color}}>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
             </div>
             <p>Martedì</p>
         </div>
         <div className={Style.schedulerDay}>
             <div>
-                <span>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
+                <span style={{backgroundColor:accent_color, color: accent_text_color}}>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
             </div>
             <p>Mercoledì</p>
         </div>
         <div className={Style.schedulerDay}>
             <div>
-                <span>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
+                <span style={{backgroundColor:accent_color, color: accent_text_color}}>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
             </div>
             <p>Giovedì</p>
         </div>
         <div className={Style.schedulerDay}>
             <div>
-                <span>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
+                <span style={{backgroundColor:accent_color, color: accent_text_color}}>{getDataAndIncrement()}/{temp_data.getMonth() + 1}</span>
             </div>
             <p>Venerdì</p>
         </div>
@@ -204,7 +206,13 @@ export default ({height, width, hourTabWidth, dayTabHeight, data, accent_color, 
     >
         <div className={Style.topWrap}>
             <div className={Style.empty} style={{width:hourTabWidth, height:"100%"}}/>
-            <DayView currentWeek={week} height={ typeof dayTabHeight === "number" ? `${dayTabHeight}px` : dayTabHeight } width={`calc(100% - ${hourTabWidth})`}/>
+            <DayView 
+                currentWeek={week} 
+                height={ typeof dayTabHeight === "number" ? `${dayTabHeight}px` : dayTabHeight } 
+                width={`calc(100% - ${hourTabWidth})`}
+                accent_color={actualAccCol}
+                accent_text_color={actualPriCol}
+            />
         </div>
         <div className={Style.bottomWrap}>
             <HourDisplay hourTabWidth={hourTabWidth} timeSettings={timeSettings} numberOfModules={NUMBER_OF_MODULES}/>
