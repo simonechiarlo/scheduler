@@ -1,0 +1,37 @@
+
+.schedulerWrap{
+    display: flex;
+    flex-direction: column;
+}
+.topWrap, .bottomWrap{
+    display: flex;
+    flex-direction: row;
+}
+.schedulerDayContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.schedulerDayContainer > div {
+    width: 20%;
+}
+.empty{
+    
+}
+.schedulerDay{
+    display: center;
+}
+.schedulerDay > div {
+    display: grid;
+    place-content: center;
+}
+.schedulerDay > div > span {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+    line-height: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 100vw;
+    background-color: red;
+}
