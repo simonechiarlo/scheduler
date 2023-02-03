@@ -20,6 +20,10 @@ const B50  = "#EFF6FF",
       B800 = "#1E40AF",
       B900 = "#1E3A8A"
 
+const TREQ = "getRealTeaching",
+      CREQ = "getRealCourseHours",
+      HTTP = "https://gestione-orari-up.railway.app/action/"
+
 const PRIMARY_COLOR   = N100,
       SECONDARY_COLOR = N400,
       ACCENT_COLOR    = B600

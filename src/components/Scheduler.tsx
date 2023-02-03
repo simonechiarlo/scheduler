@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Style from "./Scheduler.module.css"
 import { Subject, Teacher } from "../Interfaces"
+import CROSS_IMG from "../assets/cross.png"
 
 type HEXColorString  = string
 type RGBColorString  = string | [ number, number, number ]
@@ -40,6 +41,17 @@ type Props = {
     cellProps    : CellProps
 
     timeSettings : TimeSettings
+}
+type RealTeachingResponse = {
+    IsAbsence      : boolean
+    IsSubstitution : boolean
+    AbsenceTeacher : undefined | { Name : string, Surname : string }
+    TeachingID     : number
+    Day            : number
+    Hour           : number
+    SubjectName    : string
+    CourseYear     : number
+    CourseSection  : string
 }
 
 
@@ -163,8 +175,31 @@ const HourDisplay = ({ timeSettings, hourTabWidth, numberOfModules } : { timeSet
     )
 }
 
-const HourGridDisplay = ({ data, totalHeight, dayTabHeight, cellProps, borderColor, numberOfModules, popUpCol, width } : { data : HourData[], popUpCol : string, totalHeight : string, cellProps : CellProps, numberOfModules : number, dayTabHeight : string, width : string, borderColor: string }) => {
+const HourGridDisplay = ({ 
+        data, 
+        totalHeight, 
+        dayTabHeight,
+        cellProps, 
+        timeSettings,
+        borderColor, 
+        numberOfModules, 
+        popUpCol, 
+        width 
+    } : { 
+        data : HourData[], 
+        popUpCol : string, 
+        totalHeight : string, 
+        cellProps : CellProps,
+        timeSettings : TimeSettings
+        numberOfModules : number, 
+        dayTabHeight : string, 
+        width : string, 
+        borderColor: string 
+    }) => {
     
+    const START_TIME    = getIntegerFromTime(timeSettings.fromHour   ),
+          INCREASE_TIME = getIntegerFromTime(timeSettings.hourLenght )
+
     const CELL_PRIMARY_COL   = extractColor(cellProps.primary_color   ),
           CELL_SECONDARY_COL = extractColor(cellProps.secondary_color ),
           CELL_TEXT_COL      = extractColor(cellProps.text_color      )
@@ -193,7 +228,7 @@ const HourGridDisplay = ({ data, totalHeight, dayTabHeight, cellProps, borderCol
               DAY  = index % 5,
               HOUR = ~~ ( index / 5 ),
               DATA = actual_data.find( hour => (hour.day - MONDAY_OFFSET) === DAY && hour.fromHour === HOUR )
-
+        
         return DATA === undefined ? (
             <div className={Style.HourGridCellData} />
         ) : (
@@ -219,7 +254,25 @@ const HourGridDisplay = ({ data, totalHeight, dayTabHeight, cellProps, borderCol
                         height  : `calc( calc(${totalHeight} - ${dayTabHeight}) / ${numberOfModules})`
                     }}
                 >
-                    <div></div>
+                    <div className={Style.popUpHeader}>
+                        <div className={Style.popUpTitle}>
+                            <p>{ `${DATA.subject.Name}` }</p>
+                        </div>
+                        <div className={Style.popUpDate}>
+                            <p>{ `${ DAYS[DAY] } [ ${getTimeFromInteger(START_TIME + HOUR * INCREASE_TIME)} ] ` }</p>
+                        </div>
+                        <div className={Style.popUpImage}>
+                            <img src={CROSS_IMG} alt="ti sei scordato l'immagine" />
+                        </div>
+                    </div>
+                    <div className={Style.popUpBody}>
+                        {DATA.teachers.map( teacher => (
+                            <div className={Style.popUpTeacher}>
+                                <div className={Style.popUpTeacherData}><p>{`${teacher.Name} ${teacher.Surname}`}</p></div>
+                                <div className={Style.popUpTeacherSetAbsence}><p>Segna Assenza</p></div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         )
@@ -281,14 +334,15 @@ export default ({height, width, hourTabWidth, dayTabHeight, data, accent_color, 
                 dayTabHeight={typeof dayTabHeight === "number" ? `${dayTabHeight}px` : dayTabHeight} 
                 borderColor={actualSecCol} 
                 popUpCol={actualPriCol}
-                data={data} 
+                data={data}
+                timeSettings={timeSettings}
                 cellProps={cellProps} 
                 numberOfModules={NUMBER_OF_MODULES}
                 totalHeight={actualH} 
                 width={`calc(100% - ${hourTabWidth})`}
             />
         </div>
-        
+        number
     </div>
     )
 }
