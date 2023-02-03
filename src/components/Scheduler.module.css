@@ -1,7 +1,9 @@
 :root{
     --hour-display-font-size : 1.2em
 }
-
+*{
+    user-select: none;
+}
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     [ OUTER CONTAINER SECTION ]
@@ -41,9 +43,10 @@
     height         : 100%;
     width          : 100%;
     flex-direction : row-reverse;
-    align-items    : flex-end;
+    align-items    : flex-start;
 }
 .hourLabel{
+    padding-right: 3%;
     width     : fit-content;
     height    : fit-content;
 }

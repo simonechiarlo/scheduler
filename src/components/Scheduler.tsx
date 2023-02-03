@@ -151,14 +151,14 @@ const HourDisplay = ({ timeSettings, hourTabWidth, numberOfModules } : { timeSet
     for(let i = 0; i < numberOfModules - 1; i++) modules.push(getHour.next().value as string)
     return (
         <div className={Style.hourDisplayContainer} style={{ width : hourTabWidth }}>
+            <div className={Style.hourDisplay}></div>
             {modules.map( mod => ( 
             <div key={mod} className={Style.hourDisplay}>
                 <p className={Style.hourLabel}
-                    style={{ transform : `translate(0, calc(${CELL_BORDER_SIZE / 2}px + var(--hour-display-font-size)/2))`}}
+                    style={{ transform : `translate(0, calc( -1 * calc(${CELL_BORDER_SIZE / 2}px + var(--hour-display-font-size)/2)))`}}
                 >{mod}</p>
             </div>
             ))}
-            <div className={Style.hourDisplay}></div>
         </div>
     )
 }
@@ -215,11 +215,11 @@ const HourGridDisplay = ({ data, totalHeight, dayTabHeight, cellProps, borderCol
                     style={{
                         display : showPopUp ? "grid" : "none", 
                         backgroundColor : popUpCol,
-                        width   : `calc(${width} / ${DAYS.length} - 2px)`,
+                        width   : `calc( calc(${width} - ${(DAYS.length) * CELL_BORDER_SIZE}px) / ${DAYS.length})`,
                         height  : `calc( calc(${totalHeight} - ${dayTabHeight}) / ${numberOfModules})`
                     }}
                 >
-                    ds
+                    <div></div>
                 </div>
             </div>
         )
